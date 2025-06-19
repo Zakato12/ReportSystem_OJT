@@ -1,0 +1,35 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use app\Models\User;
+use DB;
+use Symfony\Component\CssSelector\Node\ElementNode;
+
+class LoginController extends Controller
+{
+    public function login(Request $request)
+    {
+        $user_name = $request->input('username');
+        $password = $request->input('password');
+
+        $users = DB::table('users')
+        ->where('username', '=',  $user_name)
+        ->where('password', '=', $password)
+        ->where('user_active', '=', '1')
+        ->first();
+
+        if($users)
+        {
+            session()->put('id', $users->id);
+            session()->put('user_name', $users->user_name);
+
+            return redirect()->action([UserController::class, 'showdashboard']);
+        }
+        else
+        {
+            return redirect()->action([PageController::class, 'Login']);
+        }
+    }
+}
