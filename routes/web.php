@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,4 +20,9 @@ Route::get('/', function () {
     return view('auth.Login');
 });
 
-Route::get('/login', [PageController::class, 'login']);
+Route::get('/dashboard', [UserController::class, 'showdashboard']);
+
+Route::get('/login', [PageController::class, 'Login'])->name('showlogin');
+Route::post('/login', [LoginController::class, 'login']);
+
+Route::post('/logout', [LoginController::class, 'logout']);

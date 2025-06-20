@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     @include('layouts.partials.head')
+    <title>@yield('title','Dashboard')</title>
 </head>
 <body>
     @include('layouts.partials.auth')

@@ -1,5 +1,5 @@
 <div>
-    @if (session('email') === null)
+    @if (session('user_name') === null)
             @include('auth.login')
     @endif
 </div>
