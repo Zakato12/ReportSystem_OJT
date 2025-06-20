@@ -33,13 +33,13 @@ class LoginController extends Controller
         }
         else
         {
-            return redirect()->action([PageController::class, 'Login']);
+            return redirect()->action([PageController::class, 'Login'])-> with('error', 'You must log in first!');
         }
     }
     public function logout(Request $request)
     {
         $request->session()->flush();
-        
+
         return redirect()->route('showlogin')->with('success', 'Logged out Successfully.');
     }
 }
