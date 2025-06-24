@@ -2,17 +2,14 @@
 <html lang="en">
 <head>
     @include('layouts.partials.head')
-    <title>@yield('title','Dashboard')</title>
+    <title>@yield('title','Ticketing System')</title>
 </head>
-<body>
-    @include('layouts.partials.auth')
-    <div>
-        @include('layouts.partials.navbar')
-        @include('layouts.partials.sidebar')
-        @yield('content')
-    </div>
+<body class="d-flex flex-column min-vh-100">
+    @include('layouts.partials.navbar')
+    @include('layouts.partials.sidebar')
+     @yield('content')
+    @include('layouts.partials.modals')
     @include('layouts.partials.footer')
     @include('layouts.partials.script')
-    @include('layouts.partials.modals')
 </body>
 </html>

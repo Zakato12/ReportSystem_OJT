@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use app\Models\User;
 use DB;
 use Symfony\Component\CssSelector\Node\ElementNode;
+use function Laravel\Prompts\alert;
 
 class LoginController extends Controller
 {
@@ -33,13 +34,14 @@ class LoginController extends Controller
         }
         else
         {
-            return redirect()->action([PageController::class, 'Login'])-> with('error', 'You must log in first!');
+        
+            return redirect()->action([PageController::class, 'Login'])->with('error','Invalid username/password!');
         }
     }
     public function logout(Request $request)
     {
         $request->session()->flush();
 
-        return redirect()->route('showlogin')->with('success', 'Logged out Successfully.');
+        return redirect()->route('showlogin')->with('success', 'Logged out successfully.');
     }
 }

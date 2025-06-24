@@ -1,95 +1,99 @@
-{{-- <div class="container">
-    <!-- Button to Open Modal -->
-            <div class="col-md-6 d-flex align-items-center justify-content-center bg-white p-5">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">
-                    Login
-                </button>
-            </div>
-        </div>
-    </div>
-    <!-- Login Modal -->
-    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+<div class="container">
+    {{-- Add Ticket --}}
+    <div class="modal fade" id="addticketModal" tabindex="-1" aria-labelledby="addticket" aria-hidden="true" aria-modal="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="loginModalLabel">Login to Your Account</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <h4 class="modal-title text-center" id="addticketModalLabel">New Ticket</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                {{-- Add Ticket Body --}}
                 <div class="modal-body">
-                    <form id="loginForm" action="{{route('auth.login')}}" method="POST">
-                        <div class="form-group">
-                            <label for="username">Username</label>
-                            <input type="username" id="username" name="username" class="form-control" placeholder="Enter your username" required>
-                        </div>
-                        <div class="form-group position-relative">
-                            <label for="password">Password</label>
-                            <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password" required>
-                            <span class="position-absolute" id="togglePassword" style="right: 12px; top: 38px; cursor: pointer;">👁️</span>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-block">Login</button>
+                    <form id="addticketForm" method="POST"  action="{{url('/tickets')}}" aria-label="Add Ticket">
+                        {{csrf_field()}}
+                            <div class="form-group">
+                                <label for="complainant">Complainant</label>
+                                <input type="text" class="form-control" name="complainant" id="complainant" required aria-label="Complainant">
+                            </div>
+                            <div class="form-group position-relative">
+                                <label for="ticketdescription">Ticket Description</label>
+                                <input type="text" class="form-control" name="ticketdescription" id="ticketdescription" required aria-label="Ticket Description">
+                            </div>
+                            <div class="form-group position-relative">
+                                <label for="urgency">Urgency</label>
+                                {{-- <input type="text" class="form-control" name="urgency" id="urgency" required aria-label="Urgency"> --}}
+                                <select name="urgency" id="urgency" class="form-select">
+                                    @foreach ($urgency as $urgencies)
+                                        <option  value="{{$urgencies->urgency_id}}" {{old('urgency') == $urgencies->urgency_id ? 'selected' : ''}}>{{$urgencies->urgency_status}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group position-relative">
+                                <label for="school">School</label>
+                                <select name="school" id="school" class="form-select">
+                                    @foreach ($schools as $school)
+                                        <option value="{{$school->school_id}}" {{old('schools') == $school->school_id ? 'selected' : ''}}> {{$school->school_name}}></option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="d-flex justify-content-end mt-3">
+                                <button type="button" class=" btn btn-mute" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+                                <button type="submit" class="btn btn-primary">Add</button>
+                            </div>
+                            
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- View Ticekt --}}
+    <div class="modal fade" id="viewticket" tabindex="-1" aria-labelledby="viewticket" aria-hidden="true" aria-modal="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title text-center" id="viewticketModalLabel">Ticket Details</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                {{-- View Ticket Body --}}
+                <div class="modal-body">
+                    <form id="viewticketForm" method="POST"  action="{{url('/tickets')}}" aria-label="Add Ticket">
+                        {{csrf_field()}}
+                            <div class="form-group">
+                                <label for="urgency">Urgency</label>
+                                <input 
+                                    type="text" 
+                                    class="form-control" 
+                                    name="urgency" 
+                                    id="urgency" 
+                                    required aria-label="Urgency"
+                                    placeholder="Urgency">
+                            </div>
+                            <div class="form-group postion-relative">
+                                <label for="description">Ticket Description</label>
+                                <input type="text" class="form-control" name="description" id="ticketdescription" required placeholder="Ticket Description">
+                            </div>
+                            <div class="form-group postion-relative">
+                                <label for=""></label>
+                                <input type="text" class="form-control" name="" id="" required aria-label="">
+                            </div>
+                            <div class="form-group postion-relative">
+                                <label for=""></label>
+                                <input type="text" class="form-control" name="" id="" required aria-label="">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Add</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Password visibility toggle
-            const togglePassword = document.getElementById('togglePassword');
-            const passwordInput = document.getElementById('password');
-            
-            togglePassword.addEventListener('click', function() {
-                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-                passwordInput.setAttribute('type', type);
-                this.textContent = type === 'password' ? '👁️' : '👁️‍🗨️';
-            });
-            // Form submission handling
-            const loginForm = document.getElementById('loginForm');
-            loginForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                // Clear previous messages
-                $('#messageModal').modal('hide');
-                // Basic client-side validation
-                const email = document.getElementById('email').value;
-                const password = document.getElementById('password').value;
-                if (!email || !password) {
-                    showMessage('Please fill in all fields', 'danger');
-                    return;
-                }
-                if (!validateEmail(email)) {
-                    showMessage('Please enter a valid email address', 'danger');
-                    return;
-                }
-                // Simulate form submission (in a real app, this would be an AJAX call or regular form submission)
-                showMessage('Login successful! Redirecting...', 'success');
-                
-                setTimeout(() => {
-                    loginForm.submit();
-                }, 1500);
-            });
 
-            function showMessage(message, type) {
-                const modalMessageContent = document.getElementById('modalMessageContent');
-                modalMessageContent.textContent = message;
-                $('#messageModal').modal('show');
-            }
-            function validateEmail(email) {
-                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                return re.test(email);
-            }
-            // Check for URL parameters to show error/success messages (simulating Laravel validation errors)
-            const urlParams = new URLSearchParams(window.location.search);
-            const errorParam = urlParams.get('error');
-            const successParam = urlParams.get('success');
-            if (errorParam) {
-                showMessage(decodeURIComponent(errorParam), 'danger');
-            }
-            if (successParam) {
-                showMessage(decodeURIComponent(successParam), 'success');
-            }
-        });
-    </script> --}}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+            // Open Modal 1
+            document.getElementById('openaddTicket').addEventListener('click', function() {
+                var addticket = new bootstrap.Modal(document.getElementById('addticketModal'));
+                addticket.show();
+            });
+    });
+</script>
