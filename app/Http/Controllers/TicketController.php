@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class TicketController extends Controller
@@ -11,25 +12,25 @@ class TicketController extends Controller
     public function viewtickets()
     {
         $tickets = DB::table('tickets')
-        ->leftJoin('users', 'tickets.user_id', '=', 'users.user_id')
-        ->leftJoin('urgency_status', 'tickets.urgency_id', '=', 'urgency_status.urgency_id')
-        // ->leftJoin('complainants', 'tickets.complainant_id', '=', 'complainants.complainant_id')
-        ->leftJoin('schools', 'tickets.school_id', '=', 'schools.school_id')
-        ->leftJoin('ticket_status', 'tickets.ticket_status_id', '=', 'ticket_status.ticket_status_id')
-        ->leftJoin('users as modified', 'tickets.ticket_modified_by', '=', 'modified.user_id')
-        ->leftJoin('users as completed', 'tickets.ticket_completed_by', '=', 'completed.user_id')
-        ->select('tickets.*', 'users.user_fname as created_by','schools.school_name as school', 'ticket_status.ticket_status as status',  'modified.user_fname as modified_by', 'completed.user_fname as completed_by', 'urgency_status.urgency_status as urgency' )
-        // ->where('active', '=', '1')
-        ->get();
+            ->get();
 
         $urgency = DB::table('urgency_status')->get();
-        $schools = DB::table('schools')->get();
+        $accounts = DB::table('accounts')->get();
+        $programmers = DB::table('users')
+            ->where('role_id', '=', 2)
+            ->get();
 
-        return view('pages.tickets', [
-            'tickets' => $tickets,
-            'urgency' => $urgency,
-            'schools' => $schools
-        ]);
+        // return view('pages.tickets', [
+        //     'tickets' => $tickets,
+        //     'urgency' => $urgency,
+        //     'schools' => $schools
+        // ]);
+        return view('pages.tickets', compact( 'urgency', 'accounts', 'programmers', 'tickets'));
+    }
+
+    public function createticket()
+    {
+
     }
 
     public function storeticket(Request $request)

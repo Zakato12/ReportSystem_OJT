@@ -36,18 +36,15 @@
                             @foreach ($tickets as $ticket)
                                 <tr>
                                     
-                                    <td>{{ $ticket->ticket_date_created}}</td>
-                                    <td>{{ $ticket->urgency}}</td>
-                                    <td>{{ $ticket->ticket_remarks}}</td>
-                                    <td>{{ $ticket->status}}</td>
-                                    <td>{{ $ticket->school}}</td>
-                                    <td>{{ $ticket->complainant}}</td>
+                                    <td >{{ $ticket->ticket_date_created}}</td>
+                                    <td>{{ $ticket->urgency_id}}</td>
+                                    <td>{{ $ticket->ticket_description}}</td>
+                                    <td>{{ $ticket->ticket_status_id}}</td>
+                                    <td>{{ $ticket->account_id}}</td>
+                                    <td>{{ $ticket->complainant_name}}</td>
                                     <tr><button class="btn btn-primary">Update</button></tr>
                                     <tr><button class="btn btn-primary">View</button></tr>
-                                   {{-- <td>
-                                    <a href="{{route('users.show', $user->id)}}" class="btn btn-primary">View</a>
-                                    <a href="{{route('users.edit', $user->id)}}" class="btn btn-primary">Update</a>
-                                   </td> --}}
+                                   
                                 </tr>
                             @endforeach
                         </tbody>
