@@ -12,42 +12,42 @@ class TicketController extends Controller
     public function viewtickets()
     {
         $tickets = DB::table('tickets')
-            ->get();
-
-        $urgency = DB::table('urgency_status')->get();
-        $accounts = DB::table('accounts')->get();
+            ->join('urgency_status', 'urgency_status.urgency_id', 'tickets.urgency_id')
+            ->join('accounts', 'accounts.account_id', 'tickets.account_id')
+            ->join('ticket_status', 'ticket_status.ticket_status_id', 'tickets.ticket_status_id')
+            ->get(); //for ticket table
+        $urgency = DB::table('urgency_status')->get(); //urgency table
+        $accounts = DB::table('accounts')->get(); //accounts table
         $programmers = DB::table('users')
-            ->where('role_id', '=', 2)
-            ->get();
+            ->where('role_id', '=', 2) //2 = programmer
+            ->get(); //users who are programmers
 
-        // return view('pages.tickets', [
-        //     'tickets' => $tickets,
-        //     'urgency' => $urgency,
-        //     'schools' => $schools
-        // ]);
         return view('pages.tickets', compact( 'urgency', 'accounts', 'programmers', 'tickets'));
-    }
-
-    public function createticket()
-    {
-
     }
 
     public function storeticket(Request $request)
     {
+        // dd($request->all());
         $validated = $request->validate([
             'ticketdescription' => 'required|string',
-            'urgency' => 'required|exists:urgency_status,urgency_id',
-            'school' => 'required|exists:schools,school_id',
-            'complainant' => 'required|string|max:255'
+            'urgency' => 'required|integer',
+            'accounts' => 'required|integer',
+            'complainant' => 'required|string|max:255',
+            'programmer' => 'nullable|integer|max:11'
         ]);
 
         DB::table('tickets')->insert([
-            'ticket_date_created' => now(),
-            'ticket_remarks' => $validated['ticketdescription'],
+            'ticket_date_created' => Carbon::now(),
+            'ticket_description' => $validated['ticketdescription'],
             'urgency_id' => (int) $validated['urgency'],
-            'school_id' => (int) $validated['school'],
-            'complainant' => $validated['complainant']
+            'account_id' => (int) $validated['accounts'],
+            'complainant_name' => $validated['complainant'],
+            'ticket_created_by' => session('user_id'),
+            'ticket_assigned_to' => $validated['programmer'] ?? null,
+            // 'ticket_status_id' => 'asdas',
+            'active' => 1
         ]);
+
+        return redirect()->back()->with('success', 'Ticket created successfully.');
     }
 }

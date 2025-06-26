@@ -52,8 +52,8 @@
                                 </div>
                                 <div class="col-6">
                                      <div class="form-group position-relative">
-                                    <label class="p-2 fw-semibold" for="accounts">Assigned to</label>
-                                    <select name="accounts" id="accounts" class="form-select">
+                                    <label class="p-2 fw-semibold" for="programmer">Assigned to</label>
+                                    <select name="programmer" id="programmer" class="form-select">
                                         <option selected>--SELECT PROGRAMMER--</option>
                                         @foreach ($programmers as $prog)
                                             <option value="{{$prog->user_id}}">{{$prog->user_fname}} {{$prog->user_mname}} {{$prog->user_lname}}</option>

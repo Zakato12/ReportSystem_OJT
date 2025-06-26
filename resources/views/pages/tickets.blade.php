@@ -37,13 +37,13 @@
                                 <tr>
                                     
                                     <td >{{ $ticket->ticket_date_created}}</td>
-                                    <td>{{ $ticket->urgency_id}}</td>
+                                    <td>{{ $ticket->urgency_lvl}}</td>
                                     <td>{{ $ticket->ticket_description}}</td>
-                                    <td>{{ $ticket->ticket_status_id}}</td>
-                                    <td>{{ $ticket->account_id}}</td>
+                                    <td>{{ $ticket->ticket_status}}</td>
+                                    <td>{{ $ticket->account_name}}</td>
                                     <td>{{ $ticket->complainant_name}}</td>
-                                    <tr><button class="btn btn-primary">Update</button></tr>
-                                    <tr><button class="btn btn-primary">View</button></tr>
+                                    <td><button class="btn btn-primary">Update</button></td>
+                                    <td><button class="btn btn-primary">View</button></td>
                                    
                                 </tr>
                             @endforeach
