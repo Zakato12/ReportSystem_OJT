@@ -30,7 +30,7 @@
                             {{ csrf_field() }}
 
                             <div class="mb-3">
-                                <label for="username" class="form-label">Username</label>
+                                <label for="username" class="form-label">Email</label>
                                 <input 
                                     type="text"
                                     class="form-control bg-white bg-opacity-50 text-dark @error('username') is-invalid @enderror"
