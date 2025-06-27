@@ -28,8 +28,10 @@ Route::get('/dashboard', [UserController::class, 'showdashboard'])->name('dashbo
 Route::get('/tickets',[TicketController::class, 'viewtickets'])->name('tickets');
 
 //Creating and Storing the Tickets
-// Route::get('/tickets', [TicketController::class, 'createticket']);
 Route::post('/tickets', [TicketController::class, 'storeticket']);
+
+//Ticket Details
+Route::post('/tickets/{ticket_id}', [TicketController::class, 'ticketdetails'])->name('tickets.view');
 
 //Login
 Route::get('/login', [PageController::class, 'Login'])->name('showlogin');

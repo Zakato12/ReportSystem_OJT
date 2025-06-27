@@ -59,4 +59,22 @@ class TicketController extends Controller
         DB::table('tickets')->insert($ticketData);
         return redirect()->back()->with('success', 'Ticket created successfully.');
     }
+
+    public function ticketdetails($tikcet_id)
+    {
+        $details = DB::table('tickets')
+            ->where('tikcet_id', $tikcet_id)
+            ->join('urgency_status', 'urgency_status.urgency_id', 'tickets.urgency_id')
+            ->join('accounts', 'accounts.account_id', 'tickets.account_id')
+            ->join('ticket_status', 'ticket_status.ticket_status_id', 'tickets.ticket_status_id')
+            ->get(); //for ticket table
+            
+        $urgency = DB::table('urgency_status')->get(); //urgency table
+        $accounts = DB::table('accounts')->get(); //accounts table
+        $programmers = DB::table('users')
+            ->where('role_id', '=', 2) //2 = programmer
+            ->get(); //users who are programmers
+
+        return view('pages.viewticketdetails');
+    }
 }
