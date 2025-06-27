@@ -16,6 +16,7 @@ class TicketController extends Controller
             ->join('accounts', 'accounts.account_id', 'tickets.account_id')
             ->join('ticket_status', 'ticket_status.ticket_status_id', 'tickets.ticket_status_id')
             ->get(); //for ticket table
+            
         $urgency = DB::table('urgency_status')->get(); //urgency table
         $accounts = DB::table('accounts')->get(); //accounts table
         $programmers = DB::table('users')
@@ -33,10 +34,10 @@ class TicketController extends Controller
             'urgency' => 'required|integer',
             'accounts' => 'required|integer',
             'complainant' => 'required|string|max:255',
-            'programmer' => 'nullable|integer|max:11'
+            'programmer' => 'nullable|integer'
         ]);
 
-        DB::table('tickets')->insert([
+        $ticketData = [
             'ticket_date_created' => Carbon::now(),
             'ticket_description' => $validated['ticketdescription'],
             'urgency_id' => (int) $validated['urgency'],
@@ -44,10 +45,18 @@ class TicketController extends Controller
             'complainant_name' => $validated['complainant'],
             'ticket_created_by' => session('user_id'),
             'ticket_assigned_to' => $validated['programmer'] ?? null,
-            // 'ticket_status_id' => 'asdas',
             'active' => 1
-        ]);
+        ];
+        if($ticketData['ticket_assigned_to'] !== null)
+        {
+            $ticketData['ticket_status_id'] = 2;
+        }
+        else
+        {
+            $ticketData['ticket_status_id'] = 1;
+        }
 
+        DB::table('tickets')->insert($ticketData);
         return redirect()->back()->with('success', 'Ticket created successfully.');
     }
 }

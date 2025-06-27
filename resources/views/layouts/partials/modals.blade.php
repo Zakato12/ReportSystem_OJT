@@ -54,7 +54,7 @@
                                      <div class="form-group position-relative">
                                     <label class="p-2 fw-semibold" for="programmer">Assigned to</label>
                                     <select name="programmer" id="programmer" class="form-select">
-                                        <option selected>--SELECT PROGRAMMER--</option>
+                                        <option selected value=" ">--SELECT PROGRAMMER--</option>
                                         @foreach ($programmers as $prog)
                                             <option value="{{$prog->user_id}}">{{$prog->user_fname}} {{$prog->user_mname}} {{$prog->user_lname}}</option>
                                         @endforeach
@@ -86,7 +86,7 @@
         </div>
     </div>
     {{-- View Ticekt --}}
-    <div class="modal fade" id="viewticket" tabindex="-1" aria-labelledby="viewticket" aria-hidden="true" aria-modal="true">
+    <div class="modal fade modal-lg" id="viewticketModal" tabindex="-1" aria-labelledby="viewticket" aria-hidden="true" aria-modal="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -97,8 +97,10 @@
                 <div class="modal-body">
                     <form id="viewticketForm" method="POST"  action="{{url('/tickets')}}" aria-label="Add Ticket">
                         {{csrf_field()}}
+                     <div class="row">
+                        <div class="col-3">
                             <div class="form-group">
-                                <label for="urgency">Urgency</label>
+                                <label class="p-2" for="urgency">Urgency</label>
                                 <input 
                                     type="text" 
                                     class="form-control" 
@@ -107,18 +109,71 @@
                                     required aria-label="Urgency"
                                     placeholder="Urgency">
                             </div>
+                        </div>
+                        <div class="col-3">
                             <div class="form-group postion-relative">
-                                <label for="description">Ticket Description</label>
+                                <label class="p-2" for="">School</label>
+                                <input type="text" class="form-control" name="" id="" required aria-label="">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                        <div class="form-group postion-relative">
+                                <label class="p-2" for="">Complainant</label>
+                                <input type="text" class="form-control" name="" id="" required aria-label="">
+                        </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                             <div class="form-group postion-relative">
+                                <label class="p-2" for="">Ticket Status</label>
+                                <input type="text" class="form-control" name="" id="" required aria-label="">
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group postion-relative">
+                                <label class="p-2" for="">Assigned To</label>
+                                <input type="text" class="form-control" name="" id="" required aria-label="">
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group postion-relative">
+                                <label class="p-2" for="">Progress</label>
+                                <input type="text" class="form-control" name="" id="" required aria-label="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                             <div class="form-group postion-relative">
+                                <label class="p-2" for="">Date Created</label>
+                                <input type="text" class="form-control" name="" id="" required aria-label="">
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group postion-relative">
+                                <label class="p-2" for="">Date Assigned</label>
+                                <input type="text" class="form-control" name="" id="" required aria-label="">
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group postion-relative">
+                                <label class="p-2" for="">Progress Date</label>
+                                <input type="text" class="form-control" name="" id="" required aria-label="">
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group postion-relative">
+                                <label class="p-2" for="">Date Completed</label>
+                                <input type="text" class="form-control" name="" id="" required aria-label="">
+                            </div>
+                        </div>
+                    </div>
+                      <div class="form-group postion-relative">
+                                <label class="p-2" for="description">Ticket Description</label>
                                 <input type="text" class="form-control" name="description" id="ticketdescription" required placeholder="Ticket Description">
-                            </div>
-                            <div class="form-group postion-relative">
-                                <label for=""></label>
-                                <input type="text" class="form-control" name="" id="" required aria-label="">
-                            </div>
-                            <div class="form-group postion-relative">
-                                <label for=""></label>
-                                <input type="text" class="form-control" name="" id="" required aria-label="">
-                            </div>
+                      </div>
+                            <button class="btn btn-success ms-1 p-1" id="opnupdareTicket">Update</button>
                             <button type="submit" class="btn btn-primary">Add</button>
                     </form>
                 </div>
@@ -126,16 +181,6 @@
         </div>
     </div>
 </div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-            // Open Modal 1
-            document.getElementById('openaddTicket').addEventListener('click', function() {
-                var addticket = new bootstrap.Modal(document.getElementById('addticketModal'));
-                addticket.show();
-            });
-    });
-</script>
 <style>
 .required-field::after {
     content: " *";
@@ -143,3 +188,17 @@
 }
 
 </style>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+            // Open Modal 1
+            document.getElementById('openaddTicket').addEventListener('click', function() {
+                var addticket = new bootstrap.Modal(document.getElementById('addticketModal'));
+                addticket.show();
+            });
+
+            document.getElementById('openviewTicket').addEventListener('click', function() {
+                var viewticket = new bootstrap.Modal(document.getElementById('viewticketModal'));
+                viewticket.show();
+            });
+    });
+</script>

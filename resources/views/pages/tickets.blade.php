@@ -29,7 +29,7 @@
                                 <th>Ticket Status</th>
                                 <th>School</th>
                                 <th>Complainant</th>
-                                <th><i class="bi bi-gear-lg"></i></th>
+                                <th class="text-center"><i class="bi bi-gear-fill"></i></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -42,8 +42,12 @@
                                     <td>{{ $ticket->ticket_status}}</td>
                                     <td>{{ $ticket->account_name}}</td>
                                     <td>{{ $ticket->complainant_name}}</td>
-                                    <td><button class="btn btn-primary">Update</button></td>
-                                    <td><button class="btn btn-primary">View</button></td>
+                                    <td>
+                                        <div class="container-fluid">
+                                            <button class="btn btn-primary ms-1 p-1" id="openviewTicket">View</button>
+                                            <button class="btn btn-danger ms-1 p-1" id="opendeleteTicket">Delete</button>
+                                        </div>
+                                    </td>
                                    
                                 </tr>
                             @endforeach
@@ -54,3 +58,4 @@
         </div>
     </main>
 @endsection
+@include('layouts.partials.modals')
