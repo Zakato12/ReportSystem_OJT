@@ -17,38 +17,36 @@
                         </button>
                     </div>
                 </div>
-
                 <div class="table-responsive">
                     <table class="table table-hover">
-                        <thead>
+                        <thead class="table-light">
                             <tr>
-                    
                                 <th>Date Created</th>
                                 <th>Urgency</th>
                                 <th>Ticket Description</th>
                                 <th>Ticket Status</th>
                                 <th>School</th>
                                 <th>Complainant</th>
-                                <th class="text-center"><i class="bi bi-gear-fill"></i></th>
+                                <th class="text-end">Actions<i class="bi bi-gear-fill ms-3"></i></th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($tickets as $ticket)
-                                <tr>
-                                    
-                                    <td >{{ $ticket->ticket_date_created}}</td>
+                                <tr>  
+                                    <td>{{ $ticket->ticket_date_created}}</td>
                                     <td>{{ $ticket->urgency_lvl}}</td>
                                     <td>{{ $ticket->ticket_description}}</td>
                                     <td>{{ $ticket->ticket_status}}</td>
                                     <td>{{ $ticket->account_name}}</td>
                                     <td>{{ $ticket->complainant_name}}</td>
                                     <td>
-                                        <div class="container-fluid">
-                                            <button class="btn btn-primary ms-1 p-1" id="openviewTicket">View</button>
-                                            <button class="btn btn-danger ms-1 p-1" id="opendeleteTicket">Delete</button>
+                                        <div class=" container-fluid text-end">
+                                            <form action="{{route('ticket.delete' , $ticket->ticket_id)}}" method="POST" >
+                                                <a class="btn btn-sm btn-outline-primary" id="openviewTicket" href="{{route('tickets.view' , $ticket->ticket_id)}}">View/Edit</a> 
+                                                <button class="btn btn-sm btn-outline-danger " type="submit" id="opendeleteTicket">Delete</button>
+                                            </form>
                                         </div>
                                     </td>
-                                   
                                 </tr>
                             @endforeach
                         </tbody>
@@ -58,4 +56,5 @@
         </div>
     </main>
 @endsection
-@include('layouts.partials.modals')
+@include('pages.ticketsadd')
+

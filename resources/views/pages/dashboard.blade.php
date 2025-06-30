@@ -2,8 +2,8 @@
 @section('page-title', 'Dashboard')
 
 @section('content')
-    <main class="main-content">
-    <div class="container-fluid">
+    <main class="main-content d-flex justify-content-center align-items-center" style="min-height: 80vh">
+    <div class="container mx-auto">
         <h2 class="mb-4">Welcome!</h2>
 
         <div class="row mb-4">

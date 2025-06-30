@@ -11,10 +11,12 @@ class TicketController extends Controller
 {
     public function viewtickets()
     {
+        
         $tickets = DB::table('tickets')
             ->join('urgency_status', 'urgency_status.urgency_id', 'tickets.urgency_id')
             ->join('accounts', 'accounts.account_id', 'tickets.account_id')
             ->join('ticket_status', 'ticket_status.ticket_status_id', 'tickets.ticket_status_id')
+            ->where('active', '=', 1)
             ->get(); //for ticket table
             
         $urgency = DB::table('urgency_status')->get(); //urgency table
@@ -50,31 +52,43 @@ class TicketController extends Controller
         if($ticketData['ticket_assigned_to'] !== null)
         {
             $ticketData['ticket_status_id'] = 2;
+            $ticketData['ticket_date_assigned'] = Carbon::now();
         }
         else
         {
             $ticketData['ticket_status_id'] = 1;
+            
         }
 
         DB::table('tickets')->insert($ticketData);
         return redirect()->back()->with('success', 'Ticket created successfully.');
     }
 
-    public function ticketdetails($tikcet_id)
+    public function ticketdetails($ticket_id)
     {
         $details = DB::table('tickets')
-            ->where('tikcet_id', $tikcet_id)
+            ->where('ticket_id', $ticket_id)
             ->join('urgency_status', 'urgency_status.urgency_id', 'tickets.urgency_id')
             ->join('accounts', 'accounts.account_id', 'tickets.account_id')
             ->join('ticket_status', 'ticket_status.ticket_status_id', 'tickets.ticket_status_id')
-            ->get(); //for ticket table
+            ->first(); //for ticket table
             
         $urgency = DB::table('urgency_status')->get(); //urgency table
         $accounts = DB::table('accounts')->get(); //accounts table
+        $status = DB::table('ticket_status')->get();//status table
         $programmers = DB::table('users')
             ->where('role_id', '=', 2) //2 = programmer
             ->get(); //users who are programmers
 
-        return view('pages.viewticketdetails');
+        return view('pages.viewticketdetails', compact('details', 'urgency', 'accounts', 'programmers', 'status'));
+    }
+
+    public function delete($ticket_id)
+    {
+        DB::table('tickets')
+            ->where('ticket_id', $ticket_id)
+            ->update(['active' => 0]);
+
+        return redirect()->route('tickets')->with('success', 'Ticket deleted successfully.');
     }
 }

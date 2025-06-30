@@ -31,7 +31,10 @@ Route::get('/tickets',[TicketController::class, 'viewtickets'])->name('tickets')
 Route::post('/tickets', [TicketController::class, 'storeticket']);
 
 //Ticket Details
-Route::post('/tickets/{ticket_id}', [TicketController::class, 'ticketdetails'])->name('tickets.view');
+Route::get('/tickets/{ticket_id}', [TicketController::class, 'ticketdetails'])->name('tickets.view');
+
+//Archiving tickets
+Route::post('/tickets/{ticket_id}',[TicketController::class, 'delete'])->name('ticket.delete');
 
 //Login
 Route::get('/login', [PageController::class, 'Login'])->name('showlogin');
