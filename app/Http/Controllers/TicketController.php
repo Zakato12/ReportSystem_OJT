@@ -21,12 +21,13 @@ class TicketController extends Controller
             ->get(); //for ticket table
             
         $urgency = DB::table('urgency_status')->get(); //urgency table
+        $status = DB::table('ticket_status')->get(); //ticket status table
         $accounts = DB::table('accounts')->get(); //accounts table
         $programmers = DB::table('users')
             ->where('role_id', '=', 2) //2 = programmer
             ->get(); //users who are programmers
 
-        return view('pages.tickets', compact( 'urgency', 'accounts', 'programmers', 'tickets'));
+        return view('pages.tickets', compact( 'urgency', 'accounts', 'programmers', 'tickets', 'status'));
 
         
     }
@@ -69,24 +70,25 @@ class TicketController extends Controller
         
     }
 
-    public function ticketdetails($ticket_id)
-    {
-        $details = DB::table('tickets')
-            ->where('ticket_id', $ticket_id)
-            ->join('urgency_status', 'urgency_status.urgency_id', 'tickets.urgency_id')
-            ->join('accounts', 'accounts.account_id', 'tickets.account_id')
-            ->join('ticket_status', 'ticket_status.ticket_status_id', 'tickets.ticket_status_id')
-            ->first(); //for ticket table
+    // WALA NANI pero bilin ko lang for study purposes
+    // public function ticketdetails($ticket_id)
+    // {
+    //     $details = DB::table('tickets')
+    //         ->where('ticket_id', $ticket_id)
+    //         ->join('urgency_status', 'urgency_status.urgency_id', 'tickets.urgency_id')
+    //         ->join('accounts', 'accounts.account_id', 'tickets.account_id')
+    //         ->join('ticket_status', 'ticket_status.ticket_status_id', 'tickets.ticket_status_id')
+    //         ->first(); //for ticket table
             
-        $urgency = DB::table('urgency_status')->get(); //urgency table
-        $accounts = DB::table('accounts')->get(); //accounts table
-        $status = DB::table('ticket_status')->get();//status table
-        $programmers = DB::table('users')
-            ->where('role_id', '=', 2) //2 = programmer
-            ->get(); //users who are programmers
+    //     $urgency = DB::table('urgency_status')->get(); //urgency table
+    //     $accounts = DB::table('accounts')->get(); //accounts table
+    //     $status = DB::table('ticket_status')->get();//status table
+    //     $programmers = DB::table('users')
+    //         ->where('role_id', '=', 2) //2 = programmer
+    //         ->get(); //users who are programmers
 
-        return view('pages.viewticketdetails', compact('details', 'urgency', 'accounts', 'programmers', 'status'));
-    }
+    //     return view('pages.viewticketdetails', compact('details', 'urgency', 'accounts', 'programmers', 'status'));
+    // }
 
     public function edit($ticket_id)
     {
@@ -150,7 +152,7 @@ class TicketController extends Controller
             $updatedticket
         );
         
-        return redirect()->route('tickets.edit', $ticket_id)->with('success', 'Ticket Updated Successfully');
+        return redirect()->route('tickets')->with('success', 'Ticket Updated Successfully');
 
     }
 
@@ -175,11 +177,12 @@ class TicketController extends Controller
             
         $urgency = DB::table('urgency_status')->get(); //urgency table
         $accounts = DB::table('accounts')->get(); //accounts table
+        $status = DB::table('ticket_status')->get();
         $programmers = DB::table('users')
             ->where('role_id', '=', 2) //2 = programmer
             ->get(); //users who are programmers
 
-        return view('pages.archive', compact( 'urgency', 'accounts', 'programmers', 'tickets'));
+        return view('pages.archive', compact( 'urgency', 'accounts', 'programmers', 'tickets', 'status'));
     }
 
     

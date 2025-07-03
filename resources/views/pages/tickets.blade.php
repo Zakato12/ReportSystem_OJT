@@ -2,6 +2,7 @@
 @section('page-title', 'Tickets')
 
 @section('content')
+    
     <main class="main-content">
         <div class="container-fluid">
             <div class="table-container">
@@ -18,8 +19,8 @@
                         <a class="btn btn-sm btn-outline-primary" href="{{url('/archive')}}">Archive</a>
                     </div>
                 </div>
-                <div class="table-responsive" id="ticket-table">
-                    <table class="table table-hover">
+                <div class="table-responsive">
+                    <table class="table table-hover" id="ticket-table">
                         <thead class="table-light">
                             <tr>
                                 <th>Date Created</th>
@@ -43,15 +44,11 @@
                                     <td>
                                         <div class=" container-fluid text-end">
                                             
-                                            <form>
-                                                <a class="btn btn-sm btn-outline-primary" href="{{route('tickets.edit' , $ticket->ticket_id)}}">View/Edit</a> 
-                                                <button type="button"
-                                                class="btn btn-sm btn-outline-danger openDeleteModal"
-                                                data-ticket-id="{{ $ticket->ticket_id }}"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#confirmDeleteModal">
-                                                Delete
-                                                </button>
+                                            <form action="{{route('ticket.delete' , $ticket->ticket_id)}}" method="POST" >
+                                                {{csrf_field()}}
+                                                <a class="btn btn-sm btn-outline-primary" id="openviewtickets" href="{{route('tickets.edit' , $ticket->ticket_id)}}">View/Edit</a> 
+                                                @method('DELETE')
+                                                <button class="btn btn-sm btn-outline-danger " type="submit" id="opendeleteTicket" onclick="return confirm('Are you Sure?')">Delete</button>
                                             </form>
                                         </div>
                                     </td>
@@ -63,21 +60,11 @@
             </div>
         </div>
     </main>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const deleteButtons = document.querySelectorAll('.openDeleteModal');
-        const deleteForm = document.getElementById('deleteForm');
-
-        deleteButtons.forEach(button => {
-            button.addEventListener('click', function () {
-                const ticketId = this.getAttribute('data-ticket-id');
-                deleteForm.action = `/tickets/delete/${ticketId}`;
-            });
-        });
-    });
+    <script>
+  $(document).ready(function () {
+    $('#ticket-table').DataTable();
+  });
 </script>
-
 @endsection
-@include('pages.ticketsadd')
+
 
