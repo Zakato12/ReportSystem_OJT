@@ -12,7 +12,6 @@
                     <a class="btn card-body" href="{{url('/unssigned')}}">
                         <div class="d-flex justify-content-center align-items-center">
                             <div>
-                                <h6 class="card-title text-danger">Unassigned Tickets</h6>
                             </div>
                         </div>
                     </a>

@@ -1,4 +1,17 @@
 <div class="container">
+    {{-- Add Ticket Toast Notif --}}
+    @if(session('success'))
+    <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1055;">
+        <div class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">
+                    {{ session('success') }}
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+            </div>
+        </div>
+    @endif
     {{-- Add Ticket --}}
     <div class="modal fade modal-lg" id="addticketModal" tabindex="-1" aria-labelledby="addticket" aria-hidden="true" aria-modal="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -101,5 +114,12 @@
                 var addticket = new bootstrap.Modal(document.getElementById('addticketModal'));
                 addticket.show();
             });
+
+            // Toast trigger
+        var toastEl = document.querySelector('.toast');
+        if (toastEl) {
+            var toast = new bootstrap.Toast(toastEl, { delay: 3000 });
+            toast.show();
+        }
     });
     </script>
