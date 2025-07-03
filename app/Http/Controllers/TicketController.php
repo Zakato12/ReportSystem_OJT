@@ -150,7 +150,7 @@ class TicketController extends Controller
             $updatedticket
         );
         
-        return redirect()->route('tickets.view', $ticket_id)->with('success', 'Ticket Updated Successfully');
+        return redirect()->route('tickets.edit', $ticket_id)->with('success', 'Ticket Updated Successfully');
 
     }
 
