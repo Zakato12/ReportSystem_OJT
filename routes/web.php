@@ -47,7 +47,7 @@ Route::get('/tickets/{ticket_id}/edit', [TicketController::class, 'edit'])->name
 Route::post('/tickets/{ticket_id}', [TicketController::class, 'updateticket'])->name('ticket.update');
 
 //Archiving tickets
-Route::delete('/tickets/{ticket_id}',[TicketController::class, 'delete'])->name('ticket.delete');
+Route::delete('/tickets/delete/{ticket_id}',[TicketController::class, 'delete'])->name('ticket.delete');
 
 route::get('/archive',[TicketController::class,'viewarchive']);
 
@@ -66,8 +66,14 @@ Route::get('/accounts/{account_id}', [AccountsController::class, 'accountdetails
 Route::get('/accounts/{account_id}/edit', [AccountsController::class, 'edit'])->name('accounts.edit');
 Route::post('/accounts/{account_id}', [AccountsController::class, 'updateaccount'])->name('accounts.update');
 
-//dashboard
+//for dashboard
+//view assigned
 Route::get('/assigned', [dashboardController::class, 'assignedview']);
-
-//view For Validation Ticket List
-Route::get('/tickets/for-validation', [dashboardController::class, 'viewforvalidation']);
+//view unassigned
+Route::get('/unssigned', [dashboardController::class, 'unassignedview']);
+//view inprogress
+Route::get('/progress', [dashboardController::class, 'progressview']);
+//view validation
+Route::get('/validate', [dashboardController::class, 'validateview']);
+// view completed 
+Route::get('/completed', [dashboardController::class, 'completedview']);
