@@ -8,58 +8,57 @@
 
         <div class="row mb-4">
             <div class="col mb-2">
-                <div class="card border-success mb-3">
-                    <div class="card-body">
+                <div class="card border-danger mb-3">
+                    <a class="btn card-body" href="{{url('/unssigned')}}">
                         <div class="d-flex justify-content-center align-items-center">
                             <div>
-                                <h6 class="card-title text-success">Unassigned Tickets</h6>
                             </div>
                         </div>
-                    </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col mb-2">
+                <div class="card border-warning mb-3">
+                    <a class="btn card-body" href="{{url('/assigned')}}">
+                        <div class="d-flex justify-content-center align-items-center">
+                            <div>
+                                <h6 class="card-title text-warning">Assigned Tickets</h6>
+                            </div>
+                        </div>
+                    </a>
                 </div>
             </div>
             <div class="col mb-2">
                 <div class="card border-info mb-3">
-                    <div class="card-body">
+                   <a class="btn card-body" href="{{url('/progress')}}">
                         <div class="d-flex justify-content-center align-items-center">
                             <div>
-                                <h6 class="card-title text-info">Assigned Tickets</h6>
+                                <h6 class="card-title text-info">In-Progress Tickets</h6>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
             <div class="col mb-2">
-                <div class="card border-warning mb-3">
-                    <div class="card-body">
+                <div class="card border-primary mb-3">
+                    <a class=" btn card-body" href="{{ url('/validate') }}">
                         <div class="d-flex justify-content-center align-items-center">
                             <div>
-                                <h6 class="card-title text-warning">In Progress Tickets</h6>
+                                <h6 class="card-title text-primary">For Verification Tickets</h6>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
             <div class="col mb-2">
-                <div class="card border-warning mb-3">
-                    <div class="card-body">
+                <div class="card border-success mb-3">
+                    <a class="btn card-body" href="{{url('/completed')}}">
                         <div class="d-flex justify-content-center align-items-center">
                             <div>
-                                <h6 class="card-title text-warning">For Verification Tickets</h6>
+                                <h6 class="card-title text-success">Completed Tickets</h6>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col mb-2">
-                <div class="card border-warning mb-3">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-center align-items-center">
-                            <div>
-                                <h6 class="card-title text-warning">Completed Tickets</h6>
-                            </div>
-                        </div>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>

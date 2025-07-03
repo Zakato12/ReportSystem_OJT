@@ -17,6 +17,13 @@
                 </b>
             </a>
         </li>
+         <li>
+            <a href="{{url('/archive')}}" class="menu-item {{request()->is('archive') ? 'active' : ''}}">
+                <b class="bi bi-archive menu-icon">
+                 <span class="menu-text">Archived Tickets</span>
+                </b>
+            </a>
+        </li>
         <li>
             <a href="{{url('/user')}}" class="menu-item {{request()->is('user') ? 'active' : ''}}">
                 <b class="bi bi-people menu-icon">
@@ -33,6 +40,7 @@
         </li>
     </ul>
 </aside>
+ <!-- <a class="btn btn-sm btn-outline-primary" href="{{url('/archive')}}">archive</a>  -->
 <style>
  .sidebar {
             position: fixed;
