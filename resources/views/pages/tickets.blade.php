@@ -59,6 +59,49 @@
         </div>
     </main>
     <script>
+        
+    {{-- Delete Confirmation Modal --}}
+<div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title" id="confirmDeleteModalLabel">Confirm Deletion</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete this ticket?
+      </div>
+      <div class="modal-footer">
+        <form method="POST" id="deleteForm">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger">Yes, Delete</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const deleteButtons = document.querySelectorAll('.openDeleteModal');
+        const deleteForm = document.getElementById('deleteForm');
+
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const ticketId = this.getAttribute('data-ticket-id');
+                deleteForm.action = `/tickets/delete/${ticketId}`;
+            });
+        });
+    });
+</script>
+
+    <script>
+  $(document).ready(function () {
+    $('#ticket-table').DataTable();
+  });
+</script>
   $(document).ready(function () {
     $('#ticket-table').DataTable();
   });
