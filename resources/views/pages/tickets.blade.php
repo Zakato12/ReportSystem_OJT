@@ -57,7 +57,6 @@
                 </div>
             </div>
         </div>
-          <a class="btn btn-sm btn-outline-primary" href="{{url('/archive')}}">archive</a> 
     </main>
 @endsection
 @include('pages.ticketsadd')
