@@ -12,7 +12,10 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-center align-items-center">
                             <div>
-                                <h6 class="card-title text-success">Unissigned Tickets</h6>
+                                <h6 class="card-title text-success">Unassigned Tickets</h6>
+                                <span class="badge bg-success">
+                                    {{ \App\Http\Controllers\dashboardController::unassignedTicketsCount() }}
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -24,6 +27,9 @@
                         <div class="d-flex justify-content-center align-items-center">
                             <div>
                                 <h6 class="card-title text-info">Assigned Tickets</h6>
+                                <span class="badge bg-success">
+                                    {{ \App\Http\Controllers\dashboardController::assignedTicketsCount() }}
+                                </span>
                                <a class="btn btn-sm btn-outline-primary" id="openviewTicket" href="{{url('/assigned')}}">Assigned</a> 
                             </div>
                         </div>
@@ -36,6 +42,9 @@
                         <div class="d-flex justify-content-center align-items-center">
                             <div>
                                 <h6 class="card-title text-warning">In Progress Tickets</h6>
+                                <span class="badge bg-success">
+                                    {{ \App\Http\Controllers\dashboardController::inprogressTicketsCount() }}
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -47,6 +56,9 @@
                         <div class="d-flex justify-content-center align-items-center">
                             <div>
                                 <h6 class="card-title text-warning">For Verification Tickets</h6>
+                                <span class="badge bg-success">
+                                    {{ \App\Http\Controllers\dashboardController::forverificationTicketsCount() }}
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -58,6 +70,9 @@
                         <div class="d-flex justify-content-center align-items-center">
                             <div>
                                 <h6 class="card-title text-warning">Completed Tickets</h6>
+                                <span class="badge bg-success">
+                                    {{ \App\Http\Controllers\dashboardController::closedTicketsCount() }}
+                                </span>
                             </div>
                         </div>
                     </div>

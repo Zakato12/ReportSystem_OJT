@@ -34,7 +34,9 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/dashboard', [UserController::class, 'showdashboard'])->name('dashboard');
 
 //Ticket List Page
-Route::get('/tickets',[TicketController::class, 'viewtickets'])->name('tickets');
+Route::get('/tickets', [TicketController::class, 'viewtickets'])->name('tickets');
+
+Route::get('/unassigned', [dashboardController::class, 'unassignedtickets'])->name('unassigned');
 
 //Ticket Details
 // Route::get('/tickets/{ticket_id}', [TicketController::class, 'ticketdetails'])->name('tickets.view');
@@ -47,18 +49,18 @@ Route::get('/tickets/{ticket_id}/edit', [TicketController::class, 'edit'])->name
 Route::post('/tickets/{ticket_id}', [TicketController::class, 'updateticket'])->name('ticket.update');
 
 //Archiving tickets
-Route::delete('/tickets/{ticket_id}',[TicketController::class, 'delete'])->name('ticket.delete');
+Route::delete('/tickets/{ticket_id}', [TicketController::class, 'delete'])->name('ticket.delete');
 
-route::get('/archive',[TicketController::class,'viewarchive']);
+route::get('/archive', [TicketController::class, 'viewarchive']);
 
-Route::post('/restore{ticket_id}',[TicketController::class, 'restore'])->name('restore');
+Route::post('/restore{ticket_id}', [TicketController::class, 'restore'])->name('restore');
 
 //Users
 Route::get('/user', [UserController::class, 'viewuser'])->name('viewuser');
 Route::post('/adduser', [UserController::class, 'adduser'])->name('add.user');
 
 //Accounts
-Route::get('/accounts',[AccountsController::class, 'viewAccounts'])->name('viewaccounts');
+Route::get('/accounts', [AccountsController::class, 'viewAccounts'])->name('viewaccounts');
 Route::post('/addaccounts', [AccountsController::class, 'addaccounts']);
 //Account Details
 Route::get('/accounts/{account_id}', [AccountsController::class, 'accountdetails'])->name('accounts.view');
