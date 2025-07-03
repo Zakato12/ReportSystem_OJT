@@ -73,9 +73,12 @@
                             <div class="form-group position-relative">
                                 <label class="p-3 fw-semibold" for="assignedto">Assigned To</label>
                                 <select name="assignedto" id="assignedto" class="form-select" disabled>
+                                    @if (is_null($details->ticket_assigned_to))
+                                        <option selected>--Please Assign a Programmer--</option>
+                                    @endif
                                     @foreach ($programmers as $prog)
                                         <option value="{{$prog->user_id}}"
-                                            @if (old('users', $details->ticket_assigned_to) == $prog->user_fname) selected @endif>
+                                            @if (old('users', $details->ticket_assigned_to) == $prog->user_id) selected @endif>
                                             {{$prog->user_fname}} {{$prog->user_mname}} {{$prog->user_lname}}
                                         </option>
                                     @endforeach
@@ -96,7 +99,7 @@
                                 <select name="ticketstatus" id="ticketstatus" class="form-select" disabled>
                                     @foreach ($status as $stat)
                                         <option value="{{$stat->ticket_status_id}}"
-                                            @if (old('tickets', $details->ticket_status_id) == $stat->ticket_status) selected @endif>
+                                            @if (old('tickets', $details->ticket_status_id) == $stat->ticket_status_id) selected @endif>
                                             {{$stat->ticket_status}}
                                         </option>
                                     @endforeach
@@ -134,12 +137,10 @@
                             required
                             disabled>{{$details->ticket_description}}</textarea>
                     </div>
-                    <form class="mt-4 text-end" id="viewticketForm" method="POST" action="{{url('/tickets')}}" aria-label="Add Ticket">
-                        {{csrf_field()}}
-                        <button class="btn btn-success ms-1" type="submit" hidden>Update</button>
-                        <button class="btn btn-info ms-1" id="show-edit">Edit</button>
+                    <div class="mt-4 text-end">
+                        <a class="btn btn-info ms-1" id="show-edit" href="{{route('tickets.edit', $details->ticket_id)}}">Edit</a>
                         <a class="btn btn-secondary"  href="{{url('/tickets')}}">Back</a>
-                    </form>
+                    </div>
                 </div>
                 </main>
         </div>  
@@ -155,7 +156,9 @@
                     var viewticket = new bootstrap.Modal(document.getElementById('viewticketModal'));
                     viewticket.show();
                 });
+            
             });
+                
         </script>
 
 @endsection

@@ -1,4 +1,4 @@
-@include("layouts.partials.head")
+@include('layouts.partials.head')
 <nav class="navbar navbar-custom navbar-expand-lg">
     <div class="container-fluid">
         <!-- Toggle button -->

@@ -1,7 +1,7 @@
 <div class="container">
     {{-- Add Ticket --}}
     <div class="modal fade modal-lg" id="addticketModal" tabindex="-1" aria-labelledby="addticket" aria-hidden="true" aria-modal="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title text-center" id="addticketModalLabel">New Ticket</h4>
@@ -78,6 +78,7 @@
                             <div class="clearfix">
                                 <button type="button" class=" btn btn-mute float-end" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
                                 <button type="submit" class="btn btn-primary float-sm-end" id="addSuccess">Add</button>
+                                
                             </div>
                             
                     </form>
