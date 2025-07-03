@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AccountsController;
+use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\TicketController;
@@ -64,3 +65,6 @@ Route::get('/accounts/{account_id}', [AccountsController::class, 'accountdetails
 //Account Edit
 Route::get('/accounts/{account_id}/edit', [AccountsController::class, 'edit'])->name('accounts.edit');
 Route::post('/accounts/{account_id}', [AccountsController::class, 'updateaccount'])->name('accounts.update');
+
+//dashboard
+Route::get('/assigned', [dashboardController::class, 'viewassigned']);

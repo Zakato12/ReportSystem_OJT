@@ -4,28 +4,35 @@
     </div>
     <ul class="sidebar-menu">
         <li>
-            <a href="{{url('/dashboard')}}" class="menu-item {{request()->is('dashboard') ? 'active' : ''}}">
+            <a href="{{url('/dashboard')}}" class="menu-item {{request()->is('Dashboard') ? 'active' : ''}}">
                 <b class="bi bi-speedometer2 menu-icon">
                     <span class="menu-text">Dashboard</span>
                 </b>
             </a>
         </li>
         <li>
-            <a href="{{url('/tickets')}}" class="menu-item {{request()->is('tickets') ? 'active' : ''}}">
+            <a href="{{url('/tickets')}}" class="menu-item {{request()->is('Tickets') ? 'active' : ''}}">
                 <b class="bi bi-list-task menu-icon">
                  <span class="menu-text">Tickets</span>
                 </b>
             </a>
         </li>
+         <li>
+            <a href="{{url('/archive')}}" class="menu-item {{request()->is('Archive') ? 'active' : ''}}">
+                <b class="bi bi-archive menu-icon">
+                 <span class="menu-text">Archived Tickets</span>
+                </b>
+            </a>
+        </li>
         <li>
-            <a href="{{url('/user')}}" class="menu-item {{request()->is('user') ? 'active' : ''}}">
+            <a href="{{url('/user')}}" class="menu-item {{request()->is('User') ? 'active' : ''}}">
                 <b class="bi bi-people menu-icon">
                 <span class="menu-text">Users</span>
                 </b>
             </a>
         </li>
         <li>
-            <a href="{{url('/accounts')}}" class="menu-item {{request()->is('accounts') ? 'active' : ''}}">
+            <a href="{{url('/accounts')}}" class="menu-item {{request()->is('Accounts') ? 'active' : ''}}">
                 <b class="bi bi-building-fill">
                  <span class="menu-text">Accounts</span>
                 </b>
@@ -33,6 +40,7 @@
         </li>
     </ul>
 </aside>
+ <!-- <a class="btn btn-sm btn-outline-primary" href="{{url('/archive')}}">archive</a>  -->
 <style>
  .sidebar {
             position: fixed;

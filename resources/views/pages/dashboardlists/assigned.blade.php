@@ -1,20 +1,19 @@
 @extends('layouts.themes.main')
-@section('page-title', 'Tickets')
+@section('page-title', 'assigned')
 
 @section('content')
     <main class="main-content">
         <div class="container-fluid">
             <div class="table-container">
                 <div class="table-header">
-                    <h2 class="table-title">Ticket List</h2>
+                    <h2 class="table-title">Assigned</h2>
                     <div class="table-actions d-flex align-items-center">
                         <div class="search-box me-2 d-flex align-items-center">
                             <i class="bi bi-search me-1"></i>
                             <input type="text" class="form-control" placeholder="Search ticket...">
                         </div>
                         <button class="btn btn-primary" id="openaddTicket" aria-label="Open Add Ticket">
-                            <i class="bi bi-plus-lg"></i> Add Ticket
-                        </button>
+                            <i class="bi bi-plus-lg"></i> Back
                     </div>
                 </div>
                 <div class="table-responsive" id="ticket-table">
@@ -42,12 +41,12 @@
                                     <td>
                                         <div class=" container-fluid text-end">
                                             
-                                            <form action="{{route('ticket.delete' , $ticket->ticket_id)}}" method="POST" >
+                                            <!-- <form action="{{route('ticket.delete' , $ticket->ticket_id)}}" method="POST" >
                                                 {{csrf_field()}}
                                                 <a class="btn btn-sm btn-outline-primary" id="openviewtickets" href="{{route('tickets.edit' , $ticket->ticket_id)}}">View/Edit</a> 
                                                 @method('DELETE')
                                                 <button class="btn btn-sm btn-outline-danger " type="submit" id="opendeleteTicket" onclick="return confirm('Are you Sure?')">Delete</button>
-                                            </form>
+                                            </form> -->
                                         </div>
                                     </td>
                                 </tr>
