@@ -24,6 +24,7 @@
                         <div class="d-flex justify-content-center align-items-center">
                             <div>
                                 <h6 class="card-title text-info">Assigned Tickets</h6>
+                               <a class="btn btn-sm btn-outline-primary" id="openviewTicket" href="{{url('/assigned')}}">Assigned</a> 
                             </div>
                         </div>
                     </div>
