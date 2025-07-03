@@ -27,6 +27,8 @@ class TicketController extends Controller
             ->get(); //users who are programmers
 
         return view('pages.tickets', compact( 'urgency', 'accounts', 'programmers', 'tickets'));
+
+        
     }
 
     public function storeticket(Request $request)

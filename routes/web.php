@@ -36,7 +36,7 @@ Route::get('/dashboard', [UserController::class, 'showdashboard'])->name('dashbo
 Route::get('/tickets',[TicketController::class, 'viewtickets'])->name('tickets');
 
 //Ticket Details
-Route::get('/tickets/{ticket_id}', [TicketController::class, 'ticketdetails'])->name('tickets.view');
+// Route::get('/tickets/{ticket_id}', [TicketController::class, 'ticketdetails'])->name('tickets.view');
 
 //Creating and Storing the Tickets
 Route::post('/tickets', [TicketController::class, 'storeticket']);

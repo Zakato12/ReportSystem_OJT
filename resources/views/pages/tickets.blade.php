@@ -44,7 +44,7 @@
                                             
                                             <form action="{{route('ticket.delete' , $ticket->ticket_id)}}" method="POST" >
                                                 {{csrf_field()}}
-                                                <a class="btn btn-sm btn-outline-primary" id="openviewTicket" href="{{route('tickets.view' , $ticket->ticket_id)}}">View/Edit</a> 
+                                                <a class="btn btn-sm btn-outline-primary" id="openviewtickets" href="{{route('tickets.edit' , $ticket->ticket_id)}}">View/Edit</a> 
                                                 @method('DELETE')
                                                 <button class="btn btn-sm btn-outline-danger " type="submit" id="opendeleteTicket" onclick="return confirm('Are you Sure?')">Delete</button>
                                             </form>
