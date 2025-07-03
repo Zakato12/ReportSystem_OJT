@@ -67,4 +67,7 @@ Route::get('/accounts/{account_id}/edit', [AccountsController::class, 'edit'])->
 Route::post('/accounts/{account_id}', [AccountsController::class, 'updateaccount'])->name('accounts.update');
 
 //dashboard
-Route::get('/assigned', [dashboardController::class, 'viewassigned']);
+Route::get('/assigned', [dashboardController::class, 'assignedview']);
+
+//view For Validation Ticket List
+Route::get('/tickets/for-validation', [dashboardController::class, 'viewforvalidation']);

@@ -20,14 +20,13 @@
             </div>
             <div class="col mb-2">
                 <div class="card border-info mb-3">
-                    <div class="card-body">
+                    <a class="btn card-body" href="{{url('/assigned')}}">
                         <div class="d-flex justify-content-center align-items-center">
                             <div>
                                 <h6 class="card-title text-info">Assigned Tickets</h6>
-                               <a class="btn btn-sm btn-outline-primary" id="openviewTicket" href="{{url('/assigned')}}">Assigned</a> 
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
             <div class="col mb-2">
@@ -43,13 +42,13 @@
             </div>
             <div class="col mb-2">
                 <div class="card border-warning mb-3">
-                    <div class="card-body">
+                    <a class=" btn card-body" href="{{ url('/tickets/for-validation') }}">
                         <div class="d-flex justify-content-center align-items-center">
                             <div>
                                 <h6 class="card-title text-warning">For Verification Tickets</h6>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
             <div class="col mb-2">

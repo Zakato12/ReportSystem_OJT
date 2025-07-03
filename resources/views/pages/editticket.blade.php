@@ -11,7 +11,6 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{url('/tickets')}}">Ticket List</a></li>
-                        <li class="breadcrumb-item"><a href="{{route('tickets.view', $details->ticket_id)}}">Ticket Details</a> </li>
                         <li class="breadcrumb-item active" aria-current="page">Ticket Edit</li>
                     </ol>
                 </nav>
@@ -140,7 +139,7 @@
                             </div>
                                 <div class="mt-4 text-end">
                                     <button class="btn btn-success ms-1" type="submit">Update</button>
-                                    <a class="btn btn-secondary"  href="{{route('tickets.view' , $details->ticket_id)}}">Cancel</a>
+                                    <a class="btn btn-secondary"  href="{{route('tickets')}}">Cancel</a>
                                 </div>
                                
                         </form>
