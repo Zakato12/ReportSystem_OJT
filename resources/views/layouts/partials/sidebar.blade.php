@@ -13,21 +13,21 @@
         <li>
             <a href="{{url('/tickets')}}" class="menu-item {{request()->is('tickets') ? 'active' : ''}}">
                 <b class="bi bi-list-task menu-icon">
-                 <span class="menu-text">Ticket List</span>
+                 <span class="menu-text">Tickets</span>
                 </b>
             </a>
         </li>
         <li>
-            <a href="" class="menu-item ">
+            <a href="{{url('/user')}}" class="menu-item {{request()->is('user') ? 'active' : ''}}">
                 <b class="bi bi-people menu-icon">
                 <span class="menu-text">Users</span>
                 </b>
             </a>
         </li>
         <li>
-            <a href="" class="menu-item ">
+            <a href="{{url('/accounts')}}" class="menu-item {{request()->is('accounts') ? 'active' : ''}}">
                 <b class="bi bi-building-fill">
-                 <span class="menu-text">Schools</span>
+                 <span class="menu-text">Accounts</span>
                 </b>
             </a>
         </li>
