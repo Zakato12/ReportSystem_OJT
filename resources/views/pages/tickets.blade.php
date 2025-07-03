@@ -46,7 +46,7 @@
                                             
                                             <form action="{{route('ticket.delete' , $ticket->ticket_id)}}" method="POST" >
                                                 {{csrf_field()}}
-                                                <a class="btn btn-sm btn-outline-primary" id="openviewtickets" bs-data-toggle="modal" bs-data-target="editticketModal{{ $ticket->ticket_id }}">Edit</a> 
+                                                <a class="btn btn-sm btn-outline-primary" id="openviewtickets" data-bs-toggle="modal" data-bs-target="editticketModal{{ $ticket->ticket_id }}">Edit</a> 
                                                 @method('DELETE')
                                                 <button class="btn btn-sm btn-outline-danger " type="submit" id="opendeleteTicket" onclick="return confirm('Are you Sure?')">Delete</button>
                                             </form>
@@ -103,5 +103,5 @@
   });
 </script>
 @endsection
-
+@include('pages.ticketsmodals')
 

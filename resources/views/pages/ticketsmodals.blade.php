@@ -221,11 +221,6 @@
             </div>
         </div>
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            
-        });
-    </script>
 @endforeach
 
 <style>
