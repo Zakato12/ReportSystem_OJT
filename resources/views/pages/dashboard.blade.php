@@ -12,7 +12,7 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-center align-items-center">
                             <div>
-                                <h6 class="card-title text-success">Unissigned Tickets</h6>
+                                <h6 class="card-title text-success">Unassigned Tickets</h6>
                             </div>
                         </div>
                     </div>

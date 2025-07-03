@@ -46,7 +46,7 @@ Route::get('/tickets/{ticket_id}/edit', [TicketController::class, 'edit'])->name
 Route::post('/tickets/{ticket_id}', [TicketController::class, 'updateticket'])->name('ticket.update');
 
 //Archiving tickets
-Route::delete('/tickets/{ticket_id}',[TicketController::class, 'delete'])->name('ticket.delete');
+Route::delete('/tickets/delete/{ticket_id}',[TicketController::class, 'delete'])->name('ticket.delete');
 
 route::get('/archive',[TicketController::class,'viewarchive']);
 

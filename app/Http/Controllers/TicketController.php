@@ -65,7 +65,7 @@ class TicketController extends Controller
 
         DB::table('tickets')->insert($ticketData);
 
-        alert('Success! Ticket Added', 'success');
+        
         return redirect()->back()->with('success', 'Ticket created successfully.');
         
     }
@@ -161,7 +161,7 @@ class TicketController extends Controller
             ->where('ticket_id', '=', $ticket_id)
             ->update(['active' => '2']);
 
-        toast('Success! Ticket Archived.', 'success');
+
        return redirect()->back()->with('success', 'Ticket deleted successfully!');
     }
 
@@ -191,7 +191,7 @@ class TicketController extends Controller
             ->where('ticket_id', '=', $ticket_id)
             ->update(['active' => '1']);
 
-        toast('Success! Ticket Restore.', 'success');
+        
        return redirect()->back()->with('success', 'Ticket Restored successfully!');
     }
 }
