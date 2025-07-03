@@ -2,6 +2,7 @@
 @section('page-title', 'Tickets')
 
 @section('content')
+    
     <main class="main-content">
         <div class="container-fluid">
             <div class="table-container">
@@ -17,8 +18,8 @@
                         </button>
                     </div>
                 </div>
-                <div class="table-responsive" id="ticket-table">
-                    <table class="table table-hover">
+                <div class="table-responsive">
+                    <table class="table table-hover" id="ticket-table">
                         <thead class="table-light">
                             <tr>
                                 <th>Date Created</th>
@@ -44,7 +45,7 @@
                                             
                                             <form action="{{route('ticket.delete' , $ticket->ticket_id)}}" method="POST" >
                                                 {{csrf_field()}}
-                                                <a class="btn btn-sm btn-outline-primary" id="openviewtickets" href="{{route('tickets.edit' , $ticket->ticket_id)}}">View/Edit</a> 
+                                                <a class="btn btn-sm btn-outline-primary" id="openeditTicket" data-bs-toggle="modal" data-bs-target="#editticketModal{{ $ticket->ticket_id }}">Edit</a> 
                                                 @method('DELETE')
                                                 <button class="btn btn-sm btn-outline-danger " type="submit" id="opendeleteTicket" onclick="return confirm('Are you Sure?')">Delete</button>
                                             </form>
@@ -60,9 +61,18 @@
     </main>
     <script>
   $(document).ready(function () {
-    $('#ticket-table').DataTable();
+    $('#ticket-table').DataTable({
+        "paging": true, // Enable pagination
+        "searching": true, // Enable search functionality
+        "lengthChange": true, // Allow users to change the number of rows per page
+        "pageLength": 10, // Set the default number of rows per page
+        "ordering": true // Enable column sorting
+    });
   });
 </script>
+
+@include('pages.ticketsmodals')
+
 @endsection
-@include('pages.ticketsadd')
+
 

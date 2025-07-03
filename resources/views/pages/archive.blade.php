@@ -54,4 +54,3 @@
         </div>
     </main>
 @endsection
-@include('pages.ticketsadd')
