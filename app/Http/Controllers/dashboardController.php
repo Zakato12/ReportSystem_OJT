@@ -102,5 +102,56 @@ class dashboardController extends Controller
 
         return view('pages.dashboardlists.closed', compact( 'urgency', 'accounts', 'programmers', 'tickets'));
 
+
 }
+    public static function unassignedTicketsCount()
+    {
+        return DB::table('tickets')
+            ->select('tickets.ticket_id') // Select the ticket_id or any other field you need
+            ->join('ticket_status', 'ticket_status.ticket_status_id', '=', 'tickets.ticket_status_id')
+            ->where('active','1')
+            ->where('tickets.ticket_status_id', '=', 1)
+            ->count();
+    }
+
+    public static function assignedTicketsCount()
+    {
+        return DB::table('tickets')
+            ->select('tickets.ticket_id') // Select the ticket_id or any other field you need
+            ->join('ticket_status', 'ticket_status.ticket_status_id', '=', 'tickets.ticket_status_id')
+            ->where('active','1')
+            ->where('tickets.ticket_status_id', '=', 2)
+            ->count();
+    }
+
+    public static function inprogressTicketsCount()
+    {
+        return DB::table('tickets')
+            ->select('tickets.ticket_id') // Select the ticket_id or any other field you need
+            ->join('ticket_status', 'ticket_status.ticket_status_id', '=', 'tickets.ticket_status_id')
+            ->where('active','1')
+            ->where('ticket_assigned_to',session('user_id'))
+            ->where('tickets.ticket_status_id', '=', 3)
+            ->count();
+    }
+
+    public static function forverificationTicketsCount()
+    {
+        return DB::table('tickets')
+            ->select('tickets.ticket_id') // Select the ticket_id or any other field you need
+            ->join('ticket_status', 'ticket_status.ticket_status_id', '=', 'tickets.ticket_status_id')
+            ->where('tickets.ticket_status_id', '=', 4)
+            ->where('active','1')
+            ->count();
+    }
+
+    public static function closedTicketsCount()
+    {
+        return DB::table('tickets')
+            ->select('tickets.ticket_id') // Select the ticket_id or any other field you need
+            ->join('ticket_status', 'ticket_status.ticket_status_id', '=', 'tickets.ticket_status_id')
+            ->where('active','1')
+            ->where('tickets.ticket_status_id', '=', 5)
+            ->count();
+    }
 }
