@@ -13,6 +13,10 @@
                         <div class="d-flex justify-content-center align-items-center">
                             <div>
                                 <h6 class="card-title text-danger">Unassigned Tickets</h6>
+                                <span class="badge bg-danger">
+                                    {{ \App\Http\Controllers\dashboardController::unassignedTicketsCount() }}
+                                </span>
+
                             </div>
                         </div>
                     </a>
@@ -24,6 +28,10 @@
                         <div class="d-flex justify-content-center align-items-center">
                             <div>
                                 <h6 class="card-title text-warning">Assigned Tickets</h6>
+                                <span class="badge bg-warning">
+                                    {{ \App\Http\Controllers\dashboardController::assignedTicketsCount() }}
+                                </span>
+
                             </div>
                         </div>
                     </a>
@@ -35,6 +43,10 @@
                         <div class="d-flex justify-content-center align-items-center">
                             <div>
                                 <h6 class="card-title text-info">In-Progress Tickets</h6>
+                                <span class="badge bg-info">
+                                    {{ \App\Http\Controllers\dashboardController::inprogressTicketsCount() }}
+                                </span>
+
                             </div>
                         </div>
                     </a>
@@ -46,6 +58,10 @@
                         <div class="d-flex justify-content-center align-items-center">
                             <div>
                                 <h6 class="card-title text-primary">For Verification Tickets</h6>
+                                <span class="badge bg-primary">
+                                    {{ \App\Http\Controllers\dashboardController::forverificationTicketsCount() }}
+                                </span>
+
                             </div>
                         </div>
                     </a>
@@ -57,6 +73,10 @@
                         <div class="d-flex justify-content-center align-items-center">
                             <div>
                                 <h6 class="card-title text-success">Completed Tickets</h6>
+                                <span class="badge bg-success">
+                                    {{ \App\Http\Controllers\dashboardController::closedTicketsCount() }}
+                                </span>
+
                             </div>
                         </div>
                     </a>

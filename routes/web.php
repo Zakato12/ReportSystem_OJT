@@ -76,3 +76,4 @@ Route::get('/progress', [dashboardController::class, 'progressview']);
 Route::get('/validate', [dashboardController::class, 'validateview']);
 // view completed 
 Route::get('/completed', [dashboardController::class, 'completedview']);
+
