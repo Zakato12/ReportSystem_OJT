@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AccountsController;
+use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\TicketController;
@@ -64,3 +65,15 @@ Route::get('/accounts/{account_id}', [AccountsController::class, 'accountdetails
 //Account Edit
 Route::get('/accounts/{account_id}/edit', [AccountsController::class, 'edit'])->name('accounts.edit');
 Route::post('/accounts/{account_id}', [AccountsController::class, 'updateaccount'])->name('accounts.update');
+
+//for dashboard
+//view assigned
+Route::get('/assigned', [dashboardController::class, 'assignedview']);
+//view unassigned
+Route::get('/unssigned', [dashboardController::class, 'unassignedview']);
+//view inprogress
+Route::get('/progress', [dashboardController::class, 'progressview']);
+//view validation
+Route::get('/validate', [dashboardController::class, 'validateview']);
+// view completed 
+Route::get('/completed', [dashboardController::class, 'completedview']);

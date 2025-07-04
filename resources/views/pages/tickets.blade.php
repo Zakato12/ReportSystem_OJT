@@ -18,7 +18,7 @@
                         <a class="btn btn-sm btn-outline-primary" href="{{url('/archive')}}">Archive</a>
                     </div>
                 </div>
-                <div class="table-responsive">
+                <div class="table-responsive" id="ticket-table">
                     <table class="table table-hover">
                         <thead class="table-light">
                             <tr>
@@ -101,6 +101,11 @@
     });
 </script>
 
+<script>
+  $(document).ready(function () {
+    $('#ticket-table').DataTable();
+  });
+</script>
 @endsection
 @include('pages.ticketsadd')
 
