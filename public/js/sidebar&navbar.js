@@ -1,35 +1,5 @@
-        // document.addEventListener('DOMContentLoaded', function() {
-        //     const toggleButton = document.getElementById('toggleSidebar');
-        //     const body = document.body;
-            
-        //     // Toggle sidebar
-        //     toggleButton.addEventListener('click', function() {
-        //         body.classList.toggle('collapsed');
-                
-        //         // Store state in localStorage
-        //         const isCollapsed = body.classList.contains('collapsed');
-        //         localStorage.setItem('sidebarCollapsed', isCollapsed);
-        //     });
-        //     // Check for saved state
-        //     const savedState = localStorage.getItem('sidebarCollapsed');
-        //     if (savedState === 'true') {
-        //         body.classList.add('collapsed');
-        //     } else if (window.innerWidth = 768) {
-        //         // Collapse by default on mobile
-        //         body.classList.add('collapsed');
-        //     }
-            
-        //     // Responsive behavior
-        //     window.addEventListener('resize', function() {
-        //         if (window.innerWidth = 768 && !body.classList.contains('collapsed')) {
-        //             body.classList.add('collapsed');
-        //         } else if (window.innerWidth > 768 && body.classList.contains('collapsed') && savedState !== 'true') {
-        //             body.classList.remove('collapsed');
-        //         }
-        //     });
-        // });
 
-        document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function () {
     const toggleButton = document.getElementById('toggleSidebar');
     const sidebar = document.querySelector('.sidebar'); // Adjust selector if needed
     const body = document.body;

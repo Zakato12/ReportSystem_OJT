@@ -19,6 +19,11 @@
 {{-- Local Styles --}}
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
+<!-- Local Scripts -->
+ <script src="{{ asset('js/app.js') }}"></script>
+ <script src="{{ asset('js/sidebar&navbar.js') }}"></script>
+
+
 <!-- DataTables CSS -->
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 

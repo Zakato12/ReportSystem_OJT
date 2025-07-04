@@ -2,6 +2,7 @@
 @section('page-title', 'Tickets')
 
 @section('content')
+    
     <main class="main-content">
         <div class="container-fluid">
             <div class="table-container">
@@ -18,8 +19,8 @@
                         <a class="btn btn-sm btn-outline-primary" href="{{url('/archive')}}">Archive</a>
                     </div>
                 </div>
-                <div class="table-responsive" id="ticket-table">
-                    <table class="table table-hover">
+                <div class="table-responsive">
+                    <table class="table table-hover" id="ticket-table">
                         <thead class="table-light">
                             <tr>
                                 <th>Date Created</th>
@@ -42,27 +43,50 @@
                                     <td>{{ $ticket->complainant_name}}</td>
                                     <td>
                                         <div class=" container-fluid text-end">
-                                            
-                                            <form>
-                                                <a class="btn btn-sm btn-outline-primary" href="{{route('tickets.edit' , $ticket->ticket_id)}}">View/Edit</a> 
-                                                <button type="button"
-                                                class="btn btn-sm btn-outline-danger openDeleteModal"
-                                                data-ticket-id="{{ $ticket->ticket_id }}"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#confirmDeleteModal">
-                                                Delete
-                                                </button>
-                                            </form>
+                                                <form>
+                                                    <a class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editticketModal{{ $ticket->ticket_id }}">Edit</a>   
+                                                    <button
+                                                        type="button" 
+                                                        class="btn btn-sm btn-outline-danger openDeleteModal"
+                                                        data-ticket-id="{{ $ticket->ticket_id }}" 
+                                                        data-bs-toggle="modal" 
+                                                        data-bs-target="#confirmDeleteModal">
+                                                        Delete
+                                                    </button> 
+                                                </form>
                                         </div>
                                     </td>
                                 </tr>
                             @endforeach
-                        </tbody>
+                        </tbody>    
                     </table>
                 </div>
             </div>
         </div>
     </main>
+    
+    {{-- Delete Confirmation Modal --}}
+<div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title" id="confirmDeleteModalLabel">Confirm Deletion</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete this ticket?
+      </div>
+      <div class="modal-footer">
+        <form method="POST" id="deleteForm">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger">Yes, Delete</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 <<<<<<<<< Temporary merge branch 1
 
     {{-- Delete Confirmation Modal --}}
@@ -125,6 +149,12 @@
         });
     });
 </script>
+    <script>
+  $(document).ready(function () {
+    $('#ticket-table').DataTable();
+  });
+</script>
+
 
 <<<<<<<<< Temporary merge branch 1
 =========
@@ -135,5 +165,5 @@
 </script>
 >>>>>>>>> Temporary merge branch 2
 @endsection
-@include('pages.ticketsadd')
+@include('pages.ticketsmodals')
 
