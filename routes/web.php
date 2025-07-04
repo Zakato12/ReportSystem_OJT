@@ -43,7 +43,6 @@ Route::get('/tickets',[TicketController::class, 'viewtickets'])->name('tickets')
 Route::post('/tickets', [TicketController::class, 'storeticket']);
 
 //Ticket Edit
-Route::get('/tickets/{ticket_id}/edit', [TicketController::class, 'edit'])->name('tickets.edit');
 Route::post('/tickets/{ticket_id}', [TicketController::class, 'updateticket'])->name('ticket.update');
 
 //Archiving tickets

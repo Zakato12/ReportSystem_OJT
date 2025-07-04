@@ -28,7 +28,9 @@
                                 <th>Ticket Status</th>
                                 <th>School</th>
                                 <th>Complainant</th>
-                                <th class="text-end">Actions<i class="bi bi-gear-fill ms-3"></i></th>
+                                @if (session('user_id') == 1)
+                                    <th class="text-end">Actions<i class="bi bi-gear-fill ms-3"></i></th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
