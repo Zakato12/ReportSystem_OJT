@@ -55,6 +55,8 @@ Route::post('/restore{ticket_id}',[TicketController::class, 'restore'])->name('r
 //Users
 Route::get('/user', [UserController::class, 'viewuser'])->name('viewuser');
 Route::post('/adduser', [UserController::class, 'adduser'])->name('add.user');
+Route::post('/edituser', [UserController::class, 'updateUsers'])->name('edituser');
+
 
 //Accounts
 Route::get('/accounts',[AccountsController::class, 'viewAccounts'])->name('viewaccounts');

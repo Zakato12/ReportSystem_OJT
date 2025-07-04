@@ -49,5 +49,31 @@ class UserController extends Controller
         return redirect()->back()->with('success', 'User created successfully.');
         
     }
+
+    public function updateUsers(request $request, $user_id){
+
+//    $users = DB::table('users')
+//             ->where('user_id', $user_id)
+//             ->get();
+
+        $updateusers = [
+            'created_at' => $request['created_at'],
+            'user_email' => $request['user_email'],
+            'user_fname' => $request['user_fname'],
+            'user_lname' => $request['user_lname'],
+            'user_mname' => $request['user_mname']
+        ];
+
+         DB::table('users')
+        ->where('user_id', $user_id)
+        ->update(
+            $updateusers
+        );
+        
+        return redirect()->route('viewuser')->with('success', 'Ticket Updated Successfully');
+
+    }
+        
+    
         
 }
