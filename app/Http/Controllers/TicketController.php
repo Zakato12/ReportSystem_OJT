@@ -89,26 +89,23 @@ class TicketController extends Controller
 
     //     return view('pages.viewticketdetails', compact('details', 'urgency', 'accounts', 'programmers', 'status'));
     // }
-
-    public function edit($ticket_id)
-    {
-         $details = DB::table('tickets')
-            ->where('ticket_id', $ticket_id)
-            ->join('urgency_status', 'urgency_status.urgency_id', 'tickets.urgency_id')
-            ->join('accounts', 'accounts.account_id', 'tickets.account_id')
-            ->join('ticket_status', 'ticket_status.ticket_status_id', 'tickets.ticket_status_id')
-            ->first(); //for ticket table
+    // public function edit($ticket_id)
+    // {
+    //      $details = DB::table('tickets')
+    //         ->where('ticket_id', $ticket_id)
+    //         ->join('urgency_status', 'urgency_status.urgency_id', 'tickets.urgency_id')
+    //         ->join('accounts', 'accounts.account_id', 'tickets.account_id')
+    //         ->join('ticket_status', 'ticket_status.ticket_status_id', 'tickets.ticket_status_id')
+    //         ->first(); //for ticket table
             
-        $urgency = DB::table('urgency_status')->get(); //urgency table
-        $accounts = DB::table('accounts')->get(); //accounts table
-        $status = DB::table('ticket_status')->get();//status table
-        $programmers = DB::table('users')
-            ->where('role_id', '=', 2) //2 = programmer
-            ->get(); //users who are programmers
-
-
-        return view('pages.editticket', compact('details', 'urgency', 'accounts', 'programmers', 'status'));
-    }
+    //     $urgency = DB::table('urgency_status')->get(); //urgency table
+    //     $accounts = DB::table('accounts')->get(); //accounts table
+    //     $status = DB::table('ticket_status')->get();//status table
+    //     $programmers = DB::table('users')
+    //         ->where('role_id', '=', 2) //2 = programmer
+    //         ->get(); //users who are programmers
+    //     return view('pages.editticket', compact('details', 'urgency', 'accounts', 'programmers', 'status'));
+    // }
 
     public function updateticket(Request $request, $ticket_id)
     {
