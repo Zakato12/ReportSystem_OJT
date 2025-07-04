@@ -12,9 +12,11 @@
                             <i class="bi bi-search me-1"></i>
                             <input type="text" class="form-control" placeholder="Search Users...">
                         </div>
-                        <button class="btn btn-primary" id="openaddUser" aria-label="Open Add user">
-                            <i class="bi bi-plus-lg"></i> Add User
-                        </button>
+                        @if (session('user_id') == 1)
+                            <button class="btn btn-primary" id="openaddUser" aria-label="Open Add user">
+                                <i class="bi bi-plus-lg"></i> Add User
+                            </button>
+                        @endif
                     </div>
                 </div>
                 <div class="table-responsive">
@@ -27,7 +29,9 @@
                                 <th>User Middle Name</th>
                                 <th>User Last Name</th>
                                 <th>Date Created</th>
-                                <th class="text-end">Actions<i class="bi bi-gear-fill ms-3"></i></th>
+                                @if (session('user_id') == 1)
+                                    <th class="text-end">Actions<i class="bi bi-gear-fill ms-3"></i></th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -41,13 +45,15 @@
                                     <td>{{ $user->created_at}}</td>
                                     <td>
                                         <div class=" container-fluid text-end">
-{{--                                             
-                                            <form action="{{route('ticket.delete' , $ticket->ticket_id)}}" method="POST" >
+
+                                        @if (session('user_id') == 1)
+                                                {{--<form action="{{route('ticket.delete' , $ticket->ticket_id)}}" method="POST" >
                                                 {{csrf_field()}} --}}
                                                 <a class="btn btn-sm btn-outline-primary" id="openviewTicket" href="{{route('viewuser')}}">Edit</a> 
                                                 {{-- @method('DELETE')
                                                 <button class="btn btn-sm btn-outline-danger " type="submit" id="opendeleteTicket" onclick="return confirm('Are you Sure?')">Delete</button> --}}
                                             </form>
+                                        @endif                                       
                                         </div>
                                     </td>
                                 </tr>
