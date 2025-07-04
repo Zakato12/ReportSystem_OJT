@@ -10,5 +10,6 @@
      @yield('content')
     @include('layouts.partials.footer')
     @include('layouts.partials.script')
+    @include('layouts.partials.modals')
 </body>
 </html>
