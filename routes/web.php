@@ -70,10 +70,11 @@ Route::post('/accounts/{account_id}', [AccountsController::class, 'updateaccount
 //view assigned
 Route::get('/assigned', [dashboardController::class, 'assignedview']);
 //view unassigned
-Route::get('/unssigned', [dashboardController::class, 'unassignedview']);
+Route::get('/unassigned', [dashboardController::class, 'unassignedview']);
 //view inprogress
 Route::get('/progress', [dashboardController::class, 'progressview']);
 //view validation
 Route::get('/validate', [dashboardController::class, 'validateview']);
 // view completed 
 Route::get('/completed', [dashboardController::class, 'completedview']);
+

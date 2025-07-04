@@ -11,26 +11,28 @@ use RealRashid\SweetAlert\Facades\Alert;
 class TicketController extends Controller
 {
     public function viewtickets()
-    {
-        
-        $tickets = DB::table('tickets')
-            ->join('urgency_status', 'urgency_status.urgency_id', 'tickets.urgency_id')
-            ->join('accounts', 'accounts.account_id', 'tickets.account_id')
-            ->join('ticket_status', 'ticket_status.ticket_status_id', 'tickets.ticket_status_id')
-            ->where('active', '=', 1)
-            ->get(); //for ticket table
-            
-        $urgency = DB::table('urgency_status')->get(); //urgency table
-        $status = DB::table('ticket_status')->get(); //ticket status table
-        $accounts = DB::table('accounts')->get(); //accounts table
-        $programmers = DB::table('users')
-            ->where('role_id', '=', 2) //2 = programmer
-            ->get(); //users who are programmers
+{
+    $tickets = DB::table('tickets')
+        ->join('urgency_status', 'urgency_status.urgency_id', '=', 'tickets.urgency_id')
+        ->join('accounts', 'accounts.account_id', '=', 'tickets.account_id')
+        ->join('ticket_status', 'ticket_status.ticket_status_id', '=', 'tickets.ticket_status_id')
+        ->where('active', '=', 1)
+        ->select(
+            'tickets.*',
+            'urgency_status.urgency_lvl',
+            'accounts.account_name',
+            'ticket_status.ticket_status'
+        )
+        ->orderBy('ticket_date_created', 'desc') //descending order date
+        ->paginate(10); //10 tickets per page
 
-        return view('pages.tickets', compact( 'urgency', 'accounts', 'programmers', 'tickets', 'status'));
+    $urgency = DB::table('urgency_status')->get();
+    $status = DB::table('ticket_status')->get();
+    $accounts = DB::table('accounts')->get();
+    $programmers = DB::table('users')->where('role_id', 2)->get();
 
-        
-    }
+    return view('pages.tickets', compact('urgency', 'accounts', 'programmers', 'tickets', 'status'));
+}
 
     public function storeticket(Request $request)
     {
@@ -194,4 +196,6 @@ class TicketController extends Controller
 
        return redirect()->back()->with('success', 'Ticket Restored successfully!');
     }
+
+    
 }

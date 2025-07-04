@@ -16,7 +16,6 @@
                         <button class="btn btn-primary" id="openaddTicket" aria-label="Open Add Ticket">
                             <i class="bi bi-plus-lg"></i> Add Ticket
                         </button>
-                        <a class="btn btn-sm btn-outline-primary" href="{{url('/archive')}}">Archive</a>
                     </div>
                 </div>
                 <div class="table-responsive">
@@ -58,9 +57,12 @@
                                     </td>
                                 </tr>
                             @endforeach
-                        </tbody>    
+                        </tbody>
                     </table>
                 </div>
+                <div class="d-flex justify-content-end mt-4">
+                            {{ $tickets->links() }}
+                    </div>
             </div>
         </div>
     </main>
