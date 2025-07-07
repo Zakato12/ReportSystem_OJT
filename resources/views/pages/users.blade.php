@@ -24,7 +24,6 @@
                         <thead class="table-light">
                             <tr>
                                 <th>Username</th>
-                               
                                 <th>User First Name</th>
                                 <th>User Middle Name</th>
                                 <th>User Last Name</th>
@@ -39,11 +38,21 @@
                             @foreach ($users as $user)
                                 <tr>  
                                     <td>{{ $user->user_email}}</td>
-                                    
                                     <td>{{ $user->user_fname}}</td>
                                     <td>{{ $user->user_mname}}</td>
                                     <td>{{ $user->user_lname}}</td>
                                     <td>{{ $user->created_at}}</td>
+
+                                    <td>
+                                        <div class=" container-fluid text-end">
+                                            @if (session('user_id') == 1)
+                                                <form>
+                                                    <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editUserModal{{ $user->user_id }}">Edit</button>         
+                                                </form>   
+                                            @endif                                     
+                                        </div>
+                                    </td>
+
                                     @if (session('user_id') == 1)
                                         <td>
                                             <div class=" container-fluid text-end">
@@ -56,6 +65,7 @@
                                             </div>
                                         </td>
                                     @endif  
+
                                 </tr>
                             @endforeach
                         </tbody>
@@ -65,5 +75,5 @@
         </div>
           {{-- <a class="btn btn-sm btn-outline-primary" href="{{url('/archive')}}">archive</a>  --}}
  </main>
- @include('pages.addusers')
+ @include('pages.usermodals')
 @endsection
