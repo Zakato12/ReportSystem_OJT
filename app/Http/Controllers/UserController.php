@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use function Laravel\Prompts\select;
+use function PHPUnit\Framework\returnArgument;
 class UserController extends Controller
 {
     public function showdashboard()
@@ -76,4 +78,32 @@ class UserController extends Controller
         
     
         
+
+        public function editpassword(Request $request)
+        {
+            $validated = $request->validate([
+                'currpassword' => 'required|string',
+                'newpassword' => 'required|string|min:8',
+                'confirmpassword' => 'required|string'
+            ]);
+
+            $user_pass = DB::table('users')
+            ->where('user_id', session('user_id'))
+            ->select('user_password');
+
+            if($validated['currpassword'] == $user_pass)
+            {
+                if($validated['newpassword'] == $validated['confirmpassword'])
+                {
+                    DB::table('users')
+                    ->where('user_id',session('user_id'))
+                    ->update(['user_passowrd' => $validated['confirmpassword']]);
+
+                    return view('pages.dashboard')->with('success', 'Your Password has been updated.');
+                }
+                return redirect()->back()->with('error', 'Password is Invalid');
+            }
+            return redirect()->back()->with('error', 'Password is Invalid');
+        }
+
 }
