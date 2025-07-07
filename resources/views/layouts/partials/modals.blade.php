@@ -11,3 +11,64 @@
         </div>
     </div>
 @endif
+<div class="modal fade modal-lg" id="changepassModal" tabindex="-1" aria-labelledby="cheangepass" aria-hidden="true" aria-modal="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title text-center" id="cheangepassModalLabel">Change Password</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                {{-- Change Password Body --}}
+                <div class="modal-body">
+                    <form id="cheangepassForm" method="POST"  action="{{url('/dashboard')}}" aria-label="Add Ticket">
+                        {{csrf_field()}}
+                        <div class="mb-3">
+                                <label for="currpassword" class="form-label">Current Password</label>
+                                <input 
+                                    type="password"
+                                    class="form-control bg-white bg-opacity-50 text-dark @error('password') is-invalid @enderror"
+                                    id="currpassword"
+                                    name="currpassword"
+                                    required
+                                    autocomplete="current-password"
+                                    placeholder="Enter your Current password"
+                                />
+                            </div>
+                             <div class="mb-3">
+                                <label for="newpassword" class="form-label">New Password</label>
+                                <input 
+                                    type="password"
+                                    class="form-control bg-white bg-opacity-50 text-dark @error('newpassword') is-invalid @enderror"
+                                    id="newpassword"
+                                    name="newpassword"
+                                    required
+                                    placeholder="Enter your New password"
+                                />
+                            </div>
+                             <div class="mb-3">
+                                <label for="confimrpassword" class="form-label">Confirm Password</label>
+                                <input 
+                                    type="password"
+                                    class="form-control bg-white bg-opacity-50 text-dark @error('confirmpassword') is-invalid @enderror"
+                                    id="confirmpassword"
+                                    name="confirmpassword"
+                                    required
+                                    placeholder="Confirm password"
+                                />
+                            </div>
+
+                            <button type="submit" class="btn btn-primary w-100">Change Password</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+</div>
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Open Add Modal
+            document.getElementById('openchangepassModal').addEventListener('click', function() {
+                var changepassword = new bootstrap.Modal(document.getElementById('changepassModal'));
+                changepassword.show();
+            });
+    });
+    </script>
