@@ -99,7 +99,7 @@
 
                 {{-- Add Ticket Body --}}
                     <div class="modal-body">
-                        <form id="adduserForm" method="POST" action="{{route('ticket.update', $ticket->ticket_id)}}">
+                        <form id="adduserForm" method="POST" action="{{route('tickets.update', $ticket->ticket_id)}}">
                             {{csrf_field()}}
                                     @method('POST')
                                     <div class="row">

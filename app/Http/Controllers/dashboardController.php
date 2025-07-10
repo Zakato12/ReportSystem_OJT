@@ -54,7 +54,8 @@ class dashboardController extends Controller
             ->join('ticket_status', 'ticket_status.ticket_status_id', 'tickets.ticket_status_id')
             ->where('active', '=', 1)
             ->where('ticket_status.ticket_status_id', 3)
-            ->get(); //for ticket table
+            ->get();
+            
             
         $urgency = DB::table('urgency_status')->get(); //urgency table
         $accounts = DB::table('accounts')->get(); //accounts table
@@ -130,7 +131,7 @@ class dashboardController extends Controller
             ->select('tickets.ticket_id') // Select the ticket_id or any other field you need
             ->join('ticket_status', 'ticket_status.ticket_status_id', '=', 'tickets.ticket_status_id')
             ->where('active','1')
-            ->where('ticket_assigned_to',session('user_id'))
+            // ->where('ticket_assigned_to',session('user_id'))
             ->where('tickets.ticket_status_id', '=', 3)
             ->count();
     }
